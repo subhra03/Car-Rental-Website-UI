@@ -1,0 +1,79 @@
+.hero-section {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+  z-index: 1;
+  min-height: 100vh; /* Fixed improper quotes */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Overlay Layer */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* subtle dark overlay */
+  z-index: 1;
+}
+
+/* Fallback or extra overlay effect if needed */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.77); /* strong overlay */
+  z-index: 0; /* Behind hero-overlay */
+}
+
+/* Title Styling */
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Subtitle Styling */
+.hero-subtitle {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Button can be adjusted globally or locally */
+.hero-section .btn-warning {
+  font-size: 1.1rem;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.4);
+  font-weight: 600;
+  z-index: 2;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.hero-section .btn-warning:hover {
+  background-color: #e0a800;
+  color: #fff;
+}
+
+/* Section backgrounds */
+.booking-section,
+.why-us-section {
+  background-color: #f8f9fa;
+}
+
+.cars-section {
+  background-color: #fff;
+}

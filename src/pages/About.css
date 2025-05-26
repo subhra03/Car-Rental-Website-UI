@@ -1,0 +1,27 @@
+.about-container {
+  backdrop-filter: blur(10px);
+}
+
+.text-orange {
+  color: #fd7e14;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.accordion-button:not(.collapsed) {
+  color: #fd7e14;
+  background-color: transparent;
+  box-shadow: none;
+}
