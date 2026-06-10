@@ -7,7 +7,8 @@
   text-align: center;
   overflow: hidden;
   z-index: 1;
-  min-height: 100vh; /* Fixed improper quotes */
+  min-height: 84vh;
+  padding: 4.5rem 0 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,7 +21,8 @@
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* subtle dark overlay */
+  background:
+    linear-gradient(90deg, rgba(5, 22, 33, 0.82) 0%, rgba(5, 22, 33, 0.54) 48%, rgba(5, 22, 33, 0.28) 100%);
   z-index: 1;
 }
 
@@ -29,23 +31,31 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.77); /* strong overlay */
-  z-index: 0; /* Behind hero-overlay */
+  background: linear-gradient(180deg, rgba(9, 38, 54, 0.1), rgba(9, 38, 54, 0.72));
+  z-index: 0;
 }
 
 /* Title Styling */
+.hero-content {
+  text-align: left;
+}
+
 .hero-title {
-  font-size: 3.5rem;
-  font-weight: 700;
+  max-width: 720px;
+  font-size: clamp(2.4rem, 5vw, 4.8rem);
+  font-weight: 850;
   margin-bottom: 1rem;
   position: relative;
   z-index: 2;
+  letter-spacing: 0;
+  line-height: 1.02;
 }
 
 /* Subtitle Styling */
 .hero-subtitle {
+  max-width: 680px;
   font-size: 1.25rem;
-  opacity: 0.9;
+  opacity: 0.92;
   margin-bottom: 2rem;
   position: relative;
   z-index: 2;
@@ -56,7 +66,7 @@
   font-size: 1.1rem;
   padding: 0.75rem 2rem;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.4);
+  box-shadow: 0 14px 32px rgba(255, 193, 7, 0.25);
   font-weight: 600;
   z-index: 2;
   position: relative;
@@ -68,12 +78,148 @@
   color: #fff;
 }
 
+.hero-booking-panel {
+  max-width: 1060px;
+  margin: 2.25rem 0 0;
+  padding: 1.1rem 1.2rem 1.2rem;
+  color: #1f2933;
+  text-align: left;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 252, 255, 0.98) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 8px;
+  box-shadow: 0 24px 55px rgba(5, 22, 33, 0.24);
+  backdrop-filter: blur(10px);
+}
+
+.hero-booking-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.85rem;
+  margin-bottom: 0.95rem;
+  border-bottom: 1px solid #e6edf3;
+}
+
+.hero-booking-header h2 {
+  margin: 0;
+  color: #14213d;
+  font-size: 1.45rem;
+  font-weight: 800;
+}
+
+.hero-booking-kicker {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 0.25rem 0.55rem;
+  color: #9b6200;
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  background: #fff2cf;
+  border-radius: 8px;
+}
+
+.car-carousel-item {
+  flex: 0 0 auto;
+  min-width: 280px;
+  scroll-snap-align: start;
+}
+
+.booking-section .container,
+.why-us-section .container {
+  position: relative;
+}
+
+.booking-section .container.p-4 {
+  border: 1px solid #e7edf3;
+  border-radius: 8px !important;
+  box-shadow: 0 18px 45px rgba(19, 38, 52, 0.1) !important;
+}
+
+.cars-section h2,
+.booking-section h2,
+.why-us-section h2 {
+  color: #132635;
+  font-weight: 850;
+}
+
+.why-us-section .shadow {
+  border: 1px solid #e8eef4;
+  border-radius: 8px !important;
+  box-shadow: 0 12px 30px rgba(19, 38, 52, 0.08) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.why-us-section .shadow:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(19, 38, 52, 0.12) !important;
+}
+
+.why-us-icon {
+  font-size: 3rem;
+}
+
+@media (max-width: 991px) {
+  .hero-section {
+    min-height: auto;
+    padding: 4rem 0 2.5rem;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+
+  .hero-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-title {
+    font-size: 2.6rem;
+  }
+
+  .hero-booking-header {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .hero-booking-kicker {
+    margin-bottom: 0.25rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .hero-section {
+    padding: 3rem 0 2rem;
+  }
+
+  .hero-title {
+    font-size: 2.1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .hero-booking-panel {
+    padding: 1rem;
+    text-align: left;
+  }
+
+  .hero-booking-header {
+    display: block;
+  }
+}
+
 /* Section backgrounds */
 .booking-section,
 .why-us-section {
-  background-color: #f8f9fa;
+  background-color: #f6f9fb;
 }
 
 .cars-section {
-  background-color: #fff;
+  background-color: #ffffff;
 }

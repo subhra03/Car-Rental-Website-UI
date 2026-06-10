@@ -1,40 +1,25 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Container, Row, Col, Button, Form, Modal } from 'react-bootstrap';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCarSide, faClock, faShieldAlt, faTags, faBolt, faHeadset } from "@fortawesome/free-solid-svg-icons";
+import React, { useState, useRef } from 'react';
+import { Container, Row, Col, Button, Modal } from 'react-bootstrap';
+import {
+    FaArrowLeft,
+    FaArrowRight,
+    FaBolt as faBolt,
+    FaCarSide as faCarSide,
+    FaClock as faClock,
+    FaHeadset as faHeadset,
+    FaShieldAlt as faShieldAlt,
+    FaTags as faTags
+} from 'react-icons/fa';
 import carsData from '../data/cars';
-import AOS from 'aos';
-import 'aos/dist/aos.css'; 
+import BookingForm from '../components/BookingForm';
+import CarCard from '../components/CarCard';
 import './Home.css';
 
 const Home = () => {
     const [showModal, setShowModal] = useState(false);
     const [selectedCar, setSelectedCar] = useState(null);
-    const [userType, setUserType] = useState('individual');
-    const [formData, setFormData] = useState({
-        selectedCar: '',
-        pickupLocation: '',
-        dropLocation: '',
-        pickupDate: '',
-        pickupTime: '',
-        dropDate: '',
-        dropTime: '',
-        userName: '',
-        email: '',
-        phone: ''
-    });
 
     const carContainerRef = useRef(null);
-
-    // Initialize AOS once on component mount
-    useEffect(() => {
-        AOS.init({
-            duration: 500,
-            easing: 'ease-in-out',
-            once: true,
-        });
-    }, []);
 
     const handleShowModal = (car) => {
         setSelectedCar(car);
@@ -44,34 +29,10 @@ const Home = () => {
     const handleCloseModal = () => {
         setShowModal(false);
         setSelectedCar(null);
-        setFormData({
-            pickupLocation: '',
-            dropLocation: '',
-            pickupDate: '',
-            pickupTime: '',
-            dropDate: '',
-            dropTime: '',
-            userName: '',
-            email: '',
-            phone: ''
-        });
     };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value
-        }));
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        alert(
-            `Booking confirmed for ${selectedCar.name} by ${formData.userName || (userType === 'company' ? 'Company' : 'Individual')
-            }`
-        );
-        handleCloseModal();
+    const scrollToBooking = () => {
+        document.getElementById('book-car')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
 
     const scrollLeft = () => {
@@ -86,9 +47,9 @@ const Home = () => {
     return (
         <div className="home">
             <div
-                className="hero-section text-white d-flex align-items-center justify-content-center text-center"
+                className="hero-section text-white d-flex align-items-center justify-content-center"
                 style={{
-                    backgroundImage: "url('/assets/hero.jpg')",
+                    backgroundImage: "url('/assets/hero-optimized.jpg')",
                 }}
                 data-aos="fade-in"
             >
@@ -97,7 +58,7 @@ const Home = () => {
 
                 ></div>
 
-                <Container className="position-relative z-2">
+                <Container className="hero-content position-relative z-2">
                     <h1
                         className="hero-title mb-3 display-4 fw-bold"
                         data-aos="fade-down"
@@ -116,12 +77,29 @@ const Home = () => {
                         variant="warning"
                         size="lg"
                         className="fw-semibold px-4 py-2"
-                        onClick={() => window.scrollTo({ top: 600, behavior: 'smooth' })}
+                        onClick={scrollToBooking}
                         data-aos="zoom-in"
                         data-aos-delay="300"
                     >
                         🚗 Reserve Your Ride Now
                     </Button>
+                    <div className="hero-booking-panel" data-aos="fade-up" data-aos-delay="350">
+                        <div className="hero-booking-header">
+                            <span className="hero-booking-kicker">Quick search</span>
+                            <h2>Find your RideX car</h2>
+                        </div>
+                        <BookingForm
+                            cars={carsData}
+                            variant="compact"
+                            showCarSelect
+                            showBookingType={false}
+                            showSuccessMessage={false}
+                            submitLabel="Find"
+                            buttonClassName="w-100 text-dark fw-semibold"
+                            buttonWrapperClassName="d-grid"
+                            onBookingSubmit={scrollToBooking}
+                        />
+                    </div>
                 </Container>
             </div>
 
@@ -131,143 +109,7 @@ const Home = () => {
                 <Container className="p-4 rounded shadow bg-white">
                     <h2 className="text-center mb-4">Book Your Car</h2>
 
-                    <Form>
-                        <Row className="mb-3">
-                            <Col xs={12}>
-                                <Form.Label className="fw-semibold">Select Car</Form.Label>
-                                <Form.Select
-                                    name="selectedCar"
-                                    value={formData.selectedCar}
-                                    onChange={handleChange}
-                                    required
-                                >
-                                    <option value="">Choose a car...</option>
-                                    {carsData.map((car) => (
-                                        <option key={car.id} value={car.id}>
-                                            {car.name}
-                                        </option>
-                                    ))}
-                                </Form.Select>
-                            </Col>
-                        </Row>
-                        <Row className="mb-3">
-                            <Col xs={12} md={6} className="mb-3 mb-md-0">
-                                <Form.Label className="fw-semibold">Pickup Location</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    name="pickupLocation"
-                                    value={formData.pickupLocation}
-                                    onChange={handleChange}
-                                    placeholder="Enter pickup location"
-                                    required
-                                />
-                            </Col>
-                            <Col xs={12} md={6}>
-                                <Form.Label className="fw-semibold">Drop Location</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    name="dropLocation"
-                                    value={formData.dropLocation}
-                                    onChange={handleChange}
-                                    placeholder="Enter drop location"
-                                    required
-                                />
-                            </Col>
-                        </Row>
-
-                        <Row className="mb-3">
-                            <Col xs={12} md={6} className="mb-3 mb-md-0">
-                                <Form.Label className="fw-semibold">Pickup Date</Form.Label>
-                                <Form.Control
-                                    type="date"
-                                    name="pickupDate"
-                                    value={formData.pickupDate}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </Col>
-                            <Col xs={12} md={6}>
-                                <Form.Label className="fw-semibold">Pickup Time</Form.Label>
-                                <Form.Control
-                                    type="time"
-                                    name="pickupTime"
-                                    value={formData.pickupTime}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </Col>
-                        </Row>
-
-                        <Row className="mb-3 align-items-center">
-                            <Col xs={12} md={3} className="mb-3 mb-md-0">
-                                <Form.Label className="fw-semibold d-block mb-2">User Type</Form.Label>
-                                <Form.Check
-                                    inline
-                                    type="radio"
-                                    label="Individual"
-                                    name="userType"
-                                    checked={userType === 'individual'}
-                                    onChange={() => setUserType('individual')}
-                                />
-                                <Form.Check
-                                    inline
-                                    type="radio"
-                                    label="Company"
-                                    name="userType"
-                                    checked={userType === 'company'}
-                                    onChange={() => setUserType('company')}
-                                />
-                            </Col>
-                            <Col xs={12} md={9}>
-                                <Form.Label className="fw-semibold">
-                                    {userType === 'individual' ? 'Your Name' : 'Company Name'}
-                                </Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    name="userName"
-                                    placeholder={userType === 'individual' ? 'Your Name' : 'Company Name'}
-                                    value={formData.userName}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </Col>
-                        </Row>
-
-                        <Row className="mb-3">
-                            <Col xs={12} md={6} className="mb-3 mb-md-0">
-                                <Form.Label className="fw-semibold">Email Address</Form.Label>
-                                <Form.Control
-                                    type="email"
-                                    name="email"
-                                    placeholder="Enter your email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </Col>
-                            <Col xs={12} md={6}>
-                                <Form.Label className="fw-semibold">Phone Number</Form.Label>
-                                <Form.Control
-                                    type="tel"
-                                    name="phone"
-                                    placeholder="Enter your phone number"
-                                    value={formData.phone}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </Col>
-                        </Row>
-
-                        <div className="d-flex justify-content-center">
-                            <Button
-                                type="submit"
-                                variant="warning"
-                                className="text-dark fw-semibold px-5"
-                            >
-                                Book Now
-                            </Button>
-                        </div>
-                    </Form>
+                    <BookingForm cars={carsData} showCarSelect submitLabel="Book Now" />
 
                 </Container>
             </section>
@@ -294,21 +136,16 @@ const Home = () => {
                             {carsData.map((car) => (
                                 <div
                                     key={car.id}
-                                    className="car-card p-3 shadow rounded bg-light"
-                                    style={{ minWidth: '280px', scrollSnapAlign: 'start', flex: '0 0 auto' }}
+                                    className="car-carousel-item"
                                     data-aos="fade-up"
                                     data-aos-delay="200"
                                 >
-                                    <img
-                                        src={`/assets/cars/${car.image}`}
+                                    <CarCard
+                                        name={car.name}
+                                        image={car.image}
                                         alt={car.alt}
-                                        className="img-fluid mb-3 rounded"
-                                        style={{ height: '180px', objectFit: 'cover' }}
+                                        onBook={() => handleShowModal(car)}
                                     />
-                                    <h5 className="mb-2">{car.name}</h5>
-                                    <Button variant="warning" onClick={() => handleShowModal(car)}>
-                                        Book Now
-                                    </Button>
                                 </div>
                             ))}
                         </div>
@@ -337,10 +174,10 @@ const Home = () => {
                             { icon: faTags, title: 'Affordable Pricing', text: 'Enjoy competitive rates with no hidden charges — what you see is what you pay.' },
                             { icon: faBolt, title: 'Instant Booking', text: 'Reserve your car in seconds with our easy-to-use booking platform.' },
                             { icon: faHeadset, title: 'Customer Support', text: 'Our support team is always ready to assist you with your queries and concerns.' }
-                        ].map(({ icon, title, text }, idx) => (
+                        ].map(({ icon: Icon, title, text }, idx) => (
                             <Col md={4} className="mb-4" key={idx} data-aos="zoom-in" data-aos-delay={250 + idx * 100}>
                                 <div className="p-4 text-center shadow rounded bg-white h-100">
-                                    <FontAwesomeIcon icon={icon} size="3x" className="text-warning mb-3" />
+                                    <Icon className="why-us-icon text-warning mb-3" />
                                     <h5>{title}</h5>
                                     <p>{text}</p>
                                 </div>
@@ -350,124 +187,18 @@ const Home = () => {
                 </Container>
             </section>
 
-            <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+            <Modal show={showModal} onHide={handleCloseModal} centered>
                 <Modal.Header closeButton>
-                    <Modal.Title>Book Your Car Now</Modal.Title>
+                    <Modal.Title>Book {selectedCar?.name || 'Your Car'}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Your Name / Company Name</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter your name"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                required
-                            />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3">
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control
-                                type="email"
-                                placeholder="Enter your email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                required
-                            />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3">
-                            <Form.Label>Phone Number</Form.Label>
-                            <Form.Control
-                                type="tel"
-                                placeholder="Enter phone number"
-                                name="phone"
-                                value={formData.phone}
-                                onChange={handleChange}
-                                required
-                            />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3">
-                            <Form.Label>Pickup Location</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Pickup Location"
-                                name="pickupLocation"
-                                value={formData.pickupLocation}
-                                onChange={handleChange}
-                                required
-                            />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3">
-                            <Form.Label>Drop Location</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Drop Location"
-                                name="dropLocation"
-                                value={formData.dropLocation}
-                                onChange={handleChange}
-                                required
-                            />
-                        </Form.Group>
-
-                        <Row className="mb-3">
-                            <Col>
-                                <Form.Label>Pickup Date</Form.Label>
-                                <Form.Control
-                                    type="date"
-                                    name="pickupDate"
-                                    value={formData.pickupDate}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </Col>
-                            <Col>
-                                <Form.Label>Pickup Time</Form.Label>
-                                <Form.Control
-                                    type="time"
-                                    name="pickupTime"
-                                    value={formData.pickupTime}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </Col>
-                        </Row>
-
-                        <Row className="mb-3">
-                            <Col>
-                                <Form.Label>Drop Date</Form.Label>
-                                <Form.Control
-                                    type="date"
-                                    name="dropDate"
-                                    value={formData.dropDate}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </Col>
-                            <Col>
-                                <Form.Label>Drop Time</Form.Label>
-                                <Form.Control
-                                    type="time"
-                                    name="dropTime"
-                                    value={formData.dropTime}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </Col>
-                        </Row>
-
-                        <div className="d-grid">
-                            <Button variant="warning" type="submit">
-                                Confirm Booking
-                            </Button>
-                        </div>
-                    </Form>
+                    <BookingForm
+                        selectedCar={selectedCar}
+                        showDropDateTime
+                        submitLabel="Confirm Booking"
+                        buttonClassName="fw-semibold"
+                        buttonWrapperClassName="d-grid"
+                    />
                 </Modal.Body>
             </Modal>
 

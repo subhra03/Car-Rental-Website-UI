@@ -1,27 +1,40 @@
 .about-container {
-  backdrop-filter: blur(10px);
+  color: #263645;
 }
 
 .text-orange {
-  color: #fd7e14;
+  color: #e98500;
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(12px);
-  border-radius: 1rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  border: 1px solid #e7edf3;
+  border-radius: 8px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 14px 34px rgba(19, 38, 52, 0.08);
 }
 
 .glass-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 18px 42px rgba(19, 38, 52, 0.12);
 }
 
-.accordion-button:not(.collapsed) {
-  color: #fd7e14;
+.about-container .accordion-button:not(.collapsed) {
+  color: #d17d00;
   background-color: transparent;
   box-shadow: none;
+}
+
+.about-container .accordion-button {
+  border-radius: 8px !important;
+  color: #17202a;
+  font-weight: 700;
+}
+
+.about-container .accordion-item {
+  overflow: hidden;
+}
+
+.about-container .accordion-body {
+  color: #5f6d7a;
 }

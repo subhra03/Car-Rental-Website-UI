@@ -1,15 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FiUser, FiMail, FiMessageCircle, FiPhone, FiMapPin } from "react-icons/fi";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import "./Contact.css";
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
-
-  useEffect(() => {
-    AOS.init({ duration: 700, once: true });
-  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -26,13 +21,13 @@ const Contact = () => {
   };
 
   return (
-    <div className="container my-5">
+    <div className="container contact-page">
       <h2 className="text-center mb-4" data-aos="fade-down">
         Contact Us
       </h2>
       <div className="row g-4">
         <div className="col-md-6" data-aos="fade-up">
-          <div className="card shadow-sm border-0 p-4 bg-light">
+          <div className="contact-card">
             {submitted && (
               <div className="alert alert-success" role="alert">
                 Thank you for contacting us! We will get back to you soon.
@@ -95,36 +90,39 @@ const Contact = () => {
         </div>
 
         <div className="col-md-6" data-aos="fade-up" data-aos-delay="200">
-          <div className="card shadow-sm border-0 p-4 bg-light h-100 d-flex flex-column">
+          <div className="contact-card h-100 d-flex flex-column">
             <h5 className="mb-3 d-flex align-items-center gap-2">
               <FiMapPin /> Our Contact Details
             </h5>
-            <p>
-              <strong>
-                <FiMapPin /> Address:
-              </strong>{" "}
-              123 Main Street, Cityname, State, PIN - 123456
-            </p>
-            <p>
-              <strong>
-                <FiPhone /> Phone:
-              </strong>{" "}
-              <a href="tel:+918521690791" className="text-decoration-none text-dark">
-                +91 85216 90791
-              </a>
-            </p>
-            <p>
-              <strong>
-                <FiMail /> Email:
-              </strong>{" "}
-              <a href="mailto:info@sscarrental.com" className="text-decoration-none text-dark">
-                info@sscarrental.com
-              </a>
-            </p>
+            <div className="contact-detail">
+              <FiMapPin />
+              <div>
+                <strong>Address</strong>
+                123 Main Street, Cityname, State, PIN - 123456
+              </div>
+            </div>
+            <div className="contact-detail">
+              <FiPhone />
+              <div>
+                <strong>Phone</strong>
+                <a href="tel:+918521690791" className="text-decoration-none text-dark">
+                  +91 85216 90791
+                </a>
+              </div>
+            </div>
+            <div className="contact-detail">
+              <FiMail />
+              <div>
+                <strong>Email</strong>
+                <a href="mailto:info@ridex.com" className="text-decoration-none text-dark">
+                  info@ridex.com
+                </a>
+              </div>
+            </div>
 
-            <div className="mt-auto">
+            <div className="contact-map mt-auto">
               <iframe
-                title="SS Car Rental Location"
+                title="RideX Location"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.902315757755!2d90.39322441543715!3d26.158353583457344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375a59e6db4a07e1%3A0x6e7b0c02f72e6f39!2sGuwahati!5e0!3m2!1sen!2sin!4v1695456600000!5m2!1sen!2sin"
                 width="100%"
                 height="250"

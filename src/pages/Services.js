@@ -1,7 +1,5 @@
-import React, { useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "aos/dist/aos.css";
-import AOS from "aos";
+import React from "react";
+import "./Services.css";
 import {
   FaCar,
   FaUserShield,
@@ -57,16 +55,12 @@ const services = [
 ];
 
 const Service = () => {
-  useEffect(() => {
-    AOS.init({ duration: 700 });
-  }, []);
-
   return (
-    <section id="services" className="py-5 bg-light">
+    <section id="services" className="services-section py-5">
       <div className="container text-center">
         <h2 className="fw-bold mb-3">Our Services</h2>
         <p className="text-muted mb-5">
-          Experience convenience and safety with SS Car Rental's trusted services.
+          Experience convenience and safety with RideX's trusted services.
         </p>
         <div className="row g-4">
           {services.map((service, index) => (
@@ -76,8 +70,8 @@ const Service = () => {
               data-aos="fade-up"
               data-aos-delay={index * 100}
             >
-              <div className="p-4 bg-white rounded shadow-sm h-100">
-                <div className="mb-3">{service.icon}</div>
+              <div className="service-card">
+                <div className="service-icon">{service.icon}</div>
                 <h5 className="fw-semibold">{service.title}</h5>
                 <p className="text-muted small">{service.description}</p>
               </div>

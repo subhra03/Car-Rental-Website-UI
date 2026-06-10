@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">RideX booking logo</title>
+  <desc id="desc">A browser window with a car above a bright book button and cursor.</desc>
+  <rect width="512" height="512" rx="14" fill="#000"/>
+  <path d="M15 16h482v481H27c-6.6 0-12-5.4-12-12V16z" fill="#eaf8ff"/>
+  <path d="M474 16h23v481h-23z" fill="#dff2ff"/>
+  <path d="M15 16h482v44H15z" fill="#58b0ef"/>
+  <path d="M474 16h23v44h-23z" fill="#2aa8ed"/>
+  <circle cx="47" cy="38" r="7" fill="#000"/>
+  <circle cx="78" cy="38" r="7" fill="#000"/>
+  <circle cx="109" cy="38" r="7" fill="#000"/>
+  <path d="M170 171l12-54c3-13.2 14.7-22.6 28.2-22.6h93.6c13.5 0 25.2 9.4 28.2 22.6l12 54z" fill="#bfe0fb"/>
+  <path d="M299 94.4h4.8c13.5 0 25.2 9.4 28.2 22.6l12 54h-38z" fill="#acd2f0" opacity=".8"/>
+  <path d="M170 171l12-54c3-13.2 14.7-22.6 28.2-22.6h93.6c13.5 0 25.2 9.4 28.2 22.6l12 54" fill="none" stroke="#000" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M161 164h190c9.4 0 17 7.6 17 17v64H144v-64c0-9.4 7.6-17 17-17z" fill="#ffdc5e"/>
+  <path d="M144 235h224v12H144z" fill="#000" opacity=".15"/>
+  <path d="M144 181c0-9.4 7.6-17 17-17h190c9.4 0 17 7.6 17 17v60H144z" fill="none" stroke="#000" stroke-width="15" stroke-linejoin="round"/>
+  <path d="M161 240h49v28c0 7.2-5.8 13-13 13h-23c-7.2 0-13-5.8-13-13z" fill="#7f7480" stroke="#000" stroke-width="15" stroke-linejoin="round"/>
+  <path d="M302 240h49v28c0 7.2-5.8 13-13 13h-23c-7.2 0-13-5.8-13-13z" fill="#7f7480" stroke="#000" stroke-width="15" stroke-linejoin="round"/>
+  <path d="M141 240h-1" stroke="#000" stroke-width="15" stroke-linecap="round"/>
+  <path d="M371 240h-1" stroke="#000" stroke-width="15" stroke-linecap="round"/>
+  <path d="M187 206h12" stroke="#000" stroke-width="15" stroke-linecap="round"/>
+  <path d="M233 206h47" stroke="#000" stroke-width="15" stroke-linecap="round"/>
+  <path d="M313 206h12" stroke="#000" stroke-width="15" stroke-linecap="round"/>
+  <rect x="92" y="307" width="327" height="109" rx="21" fill="#c9fa5b"/>
+  <path d="M381 307h17c11.6 0 21 9.4 21 21v67c0 11.6-9.4 21-21 21h-17z" fill="#aef43e"/>
+  <rect x="92" y="307" width="327" height="109" rx="21" fill="none" stroke="#000" stroke-width="15"/>
+  <text x="122" y="391" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="82" font-weight="900" fill="#000" letter-spacing="3">BOOK</text>
+  <path d="M292 395l4 70 33-28 33-8-70-34z" fill="#54adf7" stroke="#000" stroke-width="13" stroke-linejoin="round"/>
+  <path d="M505 124v-49H15v310" fill="none" stroke="#000" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M505 154v343H15v-78" fill="none" stroke="#000" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

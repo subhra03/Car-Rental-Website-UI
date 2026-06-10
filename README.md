@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# RideX
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Car rental website UI for RideX, bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
